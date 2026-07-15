@@ -1,0 +1,40 @@
+spring:
+  # Nombre de la aplicación (solo informativo)
+  application:
+    name: registro-usuarios-backend
+
+  # Importa las variables de entorno desde un archivo .env (no se sube a github)
+  config:
+    # "optional" evita errores si el archivo no existe
+    import: optional:file:.env[.properties]
+
+  # Configuración de la conexión a la base de datos
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    # Driver que utilizará Spring para conectarse a PostgreSQL
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # update: Crea o actualiza automáticamente las tablas según las entidades
+      ddl-auto: update
+    # Muestra las consultas SQL en la consola
+    show-sql: true
+
+    # Hace que las consultas SQL aparezcan ordenadas en la consola
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  # Clave secreta utilizada para firmar y verificar los tokens JWT
+  secret: ${JWT_SECRET}
+  # Tiempo de expiración del token en milisegundos
+  expiration: ${JWT_EXPIRATION}
+
+
+server:
+  # Puerto donde se ejecutará la API
+  port: 8080
