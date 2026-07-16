@@ -13,7 +13,7 @@ public class UsuarioMapper {
     /**
      * Convierte un DTO de registro en una entidad Usuario.
      */
-    public static Usuario toEntity(RegisterRequest request) {
+    public Usuario toEntity(RegisterRequest request) {
 
         return Usuario.builder()
                 .nombre(request.nombre())
@@ -28,7 +28,7 @@ public class UsuarioMapper {
     /**
      * Convierte una entidad Usuario en un UsuarioResponse.
      */
-    public static UsuarioResponse toResponse(Usuario usuario) {
+    public UsuarioResponse toResponse(Usuario usuario) {
 
         return new UsuarioResponse(
                 usuario.getId(),
