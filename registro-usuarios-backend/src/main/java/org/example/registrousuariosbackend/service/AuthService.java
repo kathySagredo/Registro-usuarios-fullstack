@@ -6,6 +6,9 @@ import org.example.registrousuariosbackend.dto.LoginResponse;
 import org.example.registrousuariosbackend.dto.RegisterRequest;
 import org.example.registrousuariosbackend.dto.UsuarioResponse;
 import org.example.registrousuariosbackend.entity.Usuario;
+import org.example.registrousuariosbackend.exception.BadRequestException;
+import org.example.registrousuariosbackend.exception.ResourceNotFoundException;
+import org.example.registrousuariosbackend.exception.UnauthorizedException;
 import org.example.registrousuariosbackend.mapper.UsuarioMapper;
 import org.example.registrousuariosbackend.repository.UsuarioRepository;
 import org.example.registrousuariosbackend.security.JwtService;
@@ -31,6 +34,10 @@ public class AuthService {
      * @return Información del usuario registrado.
      */
     public UsuarioResponse register(RegisterRequest request){
+        // Verifica si el correo electrónico ya se encuentra registrado, si existe, se lanza una excepción y el proceso se detiene.
+        if (usuarioRepository.existsByEmail(request.email())) {
+            throw new BadRequestException("El correo electrónico ya se encuentra registrado.");
+        }
         // Convierte el DTO recibido en una entidad Usuario
         Usuario usuario = usuarioMapper.toEntity(request);
         // Encripta la contraseña antes de almacenarla en la base de datos
@@ -50,11 +57,11 @@ public class AuthService {
         // Busca el usuario por su correo electrónico, si no existe, lanza una excepción
         Usuario usuario = usuarioRepository
                 .findByEmail(request.email())
-                .orElseThrow(() -> new RuntimeException("Credenciales incorrectas"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
 
         // Compara la contraseña ingresada con la contraseña encriptada almacenada en la base de datos
         if (!passwordEncoder.matches(request.password(), usuario.getPassword())) {
-            throw new RuntimeException("Credenciales incorrectas");
+            throw new UnauthorizedException("Credenciales incorrectas.");
         }
         // Genera un token JWT utilizando el correo del usuario
         String token = jwtService.generateToken(usuario.getEmail());

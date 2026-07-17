@@ -1,0 +1,9 @@
+package org.example.registrousuariosbackend.exception;
+
+// Excepción utilizada cuando un recurso solicitado no existe en la base de datos
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+
+}
