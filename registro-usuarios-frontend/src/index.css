@@ -1,0 +1,12 @@
+/* Reinicia el margen y el relleno de todos los elementos */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Fuente principal de la aplicación */
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color:#f8f9fa;
+}
