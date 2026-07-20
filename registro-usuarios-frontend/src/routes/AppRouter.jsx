@@ -14,42 +14,32 @@ import NotFound from "../pages/NotFound";
 function AppRouter() {
 
     return (
-
         <Routes>
-
             {/* Todas estas páginas compartirán el mismo Layout */}
             <Route element={<Layout />}>
-
                 <Route
                     path="/"
                     element={<Home />}
                 />
-
                 <Route
                     path="/login"
                     element={<Login />}
                 />
-
                 <Route
                     path="/register"
                     element={<Register />}
                 />
-
                 <Route
                     path="/perfil"
                     element={<Perfil />}
                 />
-
             </Route>
-
             {/* Ruta para páginas no existentes */}
             <Route
                 path="*"
                 element={<NotFound />}
             />
-
         </Routes>
-
     );
 
 }
