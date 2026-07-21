@@ -3,7 +3,6 @@ const BASE_URL = "http://localhost:8080";
 
 /*
  * Función reutilizable para realizar peticiones HTTP al backend.
- *
  * @param {string} endpoint Ruta del endpoint.
  * @param {object} options Configuración adicional de fetch.
  * @returns {Promise<any>} Datos devueltos por la API.
