@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function AppRouter() {
 
@@ -31,8 +32,14 @@ function AppRouter() {
                 />
                 <Route
                     path="/perfil"
-                    element={<Profile />}
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
                 />
+
+
             </Route>
             {/* Ruta para páginas no existentes */}
             <Route
