@@ -22,3 +22,13 @@ export async function login(credenciales) {
         body: JSON.stringify(credenciales)
     });
 }
+
+// Obtiene la información del usuario autenticado.
+export async function getProfile() {
+    return apiFetch("/usuarios/perfil", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+}

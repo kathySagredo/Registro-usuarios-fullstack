@@ -8,8 +8,8 @@ import Layout from "../components/Layout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Perfil from "../pages/Perfil";
 import NotFound from "../pages/NotFound";
+import Profile from "../pages/Profile";
 
 function AppRouter() {
 
@@ -31,7 +31,7 @@ function AppRouter() {
                 />
                 <Route
                     path="/perfil"
-                    element={<Perfil />}
+                    element={<Profile />}
                 />
             </Route>
             {/* Ruta para páginas no existentes */}
