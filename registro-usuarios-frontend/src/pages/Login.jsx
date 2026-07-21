@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
+import { saveToken } from "../services/tokenService";
 
 function Login() {
 
@@ -32,8 +33,14 @@ function Login() {
         setError("");
         try {
             const respuesta = await login(formData);
-            // Obtener token por console.log
-            console.log(respuesta);
+
+            // Guarda el JWT utilizando la clave "token".
+            saveToken(
+                respuesta.token
+            );
+
+            // Redirecciona al perfil.
+            navigate("/perfil");
         } catch (error) {
             setError(error.message);
         }
