@@ -20,7 +20,6 @@ public class UsuarioMapper {
                 .apellido(request.apellido())
                 .email(request.email())
                 .password(request.password())
-                .rol(Rol.USER)
                 .fechaRegistro(LocalDateTime.now())
                 .build();
     }

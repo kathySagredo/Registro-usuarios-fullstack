@@ -5,6 +5,7 @@ import org.example.registrousuariosbackend.dto.LoginRequest;
 import org.example.registrousuariosbackend.dto.LoginResponse;
 import org.example.registrousuariosbackend.dto.RegisterRequest;
 import org.example.registrousuariosbackend.dto.UsuarioResponse;
+import org.example.registrousuariosbackend.entity.Rol;
 import org.example.registrousuariosbackend.entity.Usuario;
 import org.example.registrousuariosbackend.exception.BadRequestException;
 import org.example.registrousuariosbackend.exception.ResourceNotFoundException;
@@ -40,6 +41,7 @@ public class AuthService {
         }
         // Convierte el DTO recibido en una entidad Usuario
         Usuario usuario = usuarioMapper.toEntity(request);
+        usuario.setRol(Rol.USER); // Por default
         // Encripta la contraseña antes de almacenarla en la base de datos
         usuario.setPassword(passwordEncoder.encode(request.password()));
         // Guarda el usuario en la base de datos
